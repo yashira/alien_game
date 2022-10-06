@@ -1,0 +1,24 @@
+users:
+  - name: User1
+    strength: 100
+    birthday: 19910309
+    key: initial
+    type: Aliens
+
+  - name: User2
+    strength: 100
+    birthday: 19920909
+    key: initial
+    type: Citizens
+
+  - name: User3
+    strength: 100
+    birthday: 19910609
+    key: initial
+    type: Citizens
+
+  - name: User4
+    strength: 100
+    birthday: 19990410
+    key: initial
+    type: Alien

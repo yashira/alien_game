@@ -15,16 +15,22 @@ router.get('/', async (req, res) => {
   }
 });
 
+/**
+ * Creating users initially
+ */
 router.post('/create', async (req, res) => {
   try {
-    const { username, password } = req.body;
-    console.log(`Username ${username} Password ${password}`);
+    const { username, uniqueId, energyLevel } = req.body;
+    const { key } = req.headers;
+
+    console.log(key);
 
     const user = {
       username,
-      password,
+      uniqueId,
+      energyLevel,
+      type: '',
     };
-
 
     const client = db.getClient();
     client.connect((err) => {
@@ -36,7 +42,7 @@ router.post('/create', async (req, res) => {
         });
       }
       client.db('alien-game').collection('users').insertOne(user, (error, result) => {
-        if (err) {
+        if (error) {
           res.status(400).send({
             error: true,
             message: 'Error occurred while inserting data',
@@ -55,6 +61,10 @@ router.post('/create', async (req, res) => {
     console.error('Error occurred during the operation');
     console.log(error);
   }
+});
+
+router.get('/register/:uniqueKey', (req, res) => {
+
 });
 
 module.exports = router;
